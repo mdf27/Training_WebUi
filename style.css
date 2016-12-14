@@ -1,0 +1,67 @@
+html {
+	font-family: Helvetica,Arial,sans-serif;
+	text-shadow: 0 1px 0 #fff;
+	color: #2e2f33; 
+}
+section:not(#albums) {	
+	display: none;
+}
+article {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #eee;
+	display: inline-flex;
+	padding: 10px;
+	flex-wrap: wrap;
+	height: 130px;
+}
+a {
+	color: #0769ad;
+	font-weight: normal;
+}  
+span:first-child {
+	font-weight: normal;	
+}
+button {
+	background-color: #2ebd59;
+	color: #ffffff;
+	border-radius: 500px;
+	border-width: 0px;
+}
+.box{
+	padding: 10px;
+}
+.pager{
+	visibility: hidden;
+	text-align: center;
+}
+.alias {
+	border-right: none;	
+}
+.btn{
+	border-left: none;
+}
+.column{
+	width: 48%;
+	padding: 1px;
+	font-size: 12px;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+div[id^=right-column]{
+	float: left;	
+	text-align: center;
+}
+div[id^=left-column]{
+	float: left;	
+}
+div[id^=left-column] span.tag {
+	width: 98%;	
+	font-weight: bold;	
+	float: left;					
+}
+div[id^=right-column] img { 
+ 	height: 60%; 
+ 	width: 98%; 
+ 	clear: both;
+}
