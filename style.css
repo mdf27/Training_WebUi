@@ -65,3 +65,12 @@ div[id^=right-column] img {
  	width: 98%; 
  	clear: both;
 }
+input:focus {
+	outline-style: none !important;
+	box-shadow: none !important;
+    	border-color: #ccc !important;
+}
+button:hover, button:active, button:focus {
+	background-color: #fff !important;
+	outline: none !important;
+}
