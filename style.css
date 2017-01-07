@@ -49,19 +49,19 @@ button {
 	word-wrap: break-word;
 	overflow: hidden;
 }
-div[id^=right-column]{
+article .right-column {
 	float: left;	
 	text-align: center;
 }
-div[id^=left-column]{
+article .left-column]{
 	float: left;	
 }
-div[id^=left-column] span.tag {
+.left-column span.tag {
 	width: 98%;	
 	font-weight: bold;	
 	float: left;					
 }
-div[id^=right-column] img { 
+.right-column img { 
  	height: 60%; 
  	width: 98%; 
  	clear: both;

@@ -17,16 +17,27 @@ $(window).load(function(){
 				})
 			.done(function(data){			
 				$.each( data.albums.items, function( i, item ){	
-					var $nameContent;
-					$("<div>").attr({"id":"box"+i,"class":"box col-xs-6 col-md-3 col-lg-2"}).appendTo( "#albums");
-					$("<article>").attr("id",i).appendTo( "#box"+i );
-					$("<div>").attr({"id":"left-column"+i, "class": "column"}).appendTo("article#"+i );
-					$("<div>").attr({"id":"right-column"+i, "class": "column"}).appendTo("article#"+i );
-	        		$("<img>").attr( "src", item.images[0].url ).appendTo( "div#right-column"+i ); 
-	        		$nameContent = wordSplit(item.name);
-	        		$nameContent.appendTo( $("<span>").text("Name: ").attr("class","tag").appendTo( "div#left-column"+i ) );  
-	        		$("<span>").text(item.type).appendTo( $("<span>").text("Type: ").attr("class","tag").appendTo( "div#left-column"+i ) );
-	        		$("<a>").attr("href",item.uri).text("Listen on spotify").appendTo( "div#right-column"+i );         		         		    		
+					var $albumTitle,
+					$box = $("<div>").attr({"id":"box"+i,"class":"box col-xs-6 col-md-3 col-lg-2"}),
+					$article = $("<article>"),
+					$leftColumn = $("<div>").attr({"class": "column left-column"}),
+					$rightColumn = $("<div>").attr({"class": "column right-column"}),
+					$imageContainer = $("<img>").attr( "src", item.images[0].url ),
+					$nameSpan = $("<span>").text("Name: ").attr("class","tag"),
+					$typeSpan  = $("<span>").text("Type: ").attr("class","tag"),
+					$typeValue = $("<span>").text(item.type),
+					$link = $("<a>").attr("href",item.uri).text("Listen on spotify");
+					$nameSpan.appendTo ($leftColumn);
+					$albumTitle = wordSplitAddTooltip(item.name);
+					$albumTitle.appendTo ($nameSpan);
+					$typeSpan.appendTo ($leftColumn);
+					$typeValue.appendTo ($typeSpan);
+					$imageContainer.appendTo($rightColumn);
+					$link.appendTo ($rightColumn);
+					$leftColumn.appendTo($article);
+					$rightColumn.appendTo($article);    		 
+					$article.appendTo($box);
+	        		$box.appendTo("#albums");        		         		    		
 	        	});
 	        	if (data.albums.items.length){
 	        		$(".pagination").css({"visibility":"visible"});
@@ -43,15 +54,15 @@ $(window).load(function(){
 	$("section").fadeIn(1000);
 	$(".alias").focus();	
 	$("input[type='text']").keyup($search);	
-	function wordSplit(nameContent){
-		if (nameContent.length > 20) {
-			$titleTooltip  = nameContent;
-			nameContent = nameContent.slice(0,20) + "...";
-			nameContent = $("<span>").text(nameContent).attr({"data-toggle":"tooltip", "title":$titleTooltip}).tooltip();
+	function wordSplitAddTooltip(albumTitle){
+		if (albumTitle.length > 20) {
+			$titleTooltip  = albumTitle;
+			albumTitle = albumTitle.slice(0,20) + "...";
+			albumTitle = $("<span>").text(albumTitle).attr({"data-toggle":"tooltip", "title":$titleTooltip}).tooltip();
 		}else{
-			nameContent = $("<span>").text(nameContent);
+			albumTitle = $("<span>").text(albumTitle);
 		}
 
-		return nameContent;
+		return albumTitle;
 	};	
 });		
