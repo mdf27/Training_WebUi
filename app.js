@@ -26,25 +26,26 @@ $(window).load(function(){
 					$nameSpan = $("<span>").text("Name: ").attr("class","tag"),
 					$typeSpan  = $("<span>").text("Type: ").attr("class","tag"),
 					$typeValue = $("<span>").text(item.type),
-					$link = $("<a>").attr("href",item.uri).text("Listen on spotify"),
-					$linkIcon = $("<a>").attr({"href":item.uri, "class":"glyphicon glyphicon-music"});
-					$nameSpan.appendTo ($leftColumn);
+					$link = $("<a>")
+							.attr("href",item.uri)
+							.text("Listen on spotify"),
+					$linkIcon = $("<a>").attr({"class":"glyphicon glyphicon-music", "href":item.uri});															
 					$albumTitle = wordSplitAddTooltip(item.name);
-					$albumTitle.appendTo ($nameSpan);
-					$typeSpan.appendTo ($leftColumn);
-					$typeValue.appendTo ($typeSpan);
-					$imageContainer.appendTo($rightColumn);
-					$link.appendTo ($rightColumn);								
-					$linkIcon.appendTo ($rightColumn);					
-					$leftColumn.appendTo($article);
-					$rightColumn.appendTo($article);    		 
+					$albumTitle.appendTo($nameSpan);
+					$rightColumn.append($imageContainer, $link, $linkIcon);
+					$leftColumn.append($nameSpan, $typeSpan);
+					$typeValue.appendTo($typeSpan);
+					$article.append($leftColumn, $rightColumn);
 					$article.appendTo($box);
 	        		$box.appendTo("#albums");        		         		    		
 	        	});
 	        	if (data.albums.items.length){
 	        		$(".pagination").css({"visibility":"visible"});
 	        	}else{
-	        		$("<div>").attr("class","alert").text("There is no results for your search").appendTo("#albums");
+	        		$("<div>")
+	        		.attr("class","alert")
+	        		.text("There is no results for your search")
+	        		.appendTo("#albums");
 	        	}	        	
 			})
 			.fail(function() {
