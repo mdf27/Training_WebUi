@@ -18,7 +18,7 @@ $(window).load(function(){
 			.done(function(data){			
 				$.each( data.albums.items, function( i, item ){	
 					var $albumTitle,
-					$box = $("<div>").attr({"id":"box"+i,"class":"box col-xs-4 col-sm-3 col-md-3 col-lg-2"}),
+					$box = $("<div>").attr({"id":"box"+i,"class":"box col-xs-3 col-sm-2 col-md-3 col-lg-2"}),
 					$article = $("<article>"),
 					$leftColumn = $("<div>").attr({"class": "column left-column"}),
 					$rightColumn = $("<div>").attr({"class": "column right-column"}),

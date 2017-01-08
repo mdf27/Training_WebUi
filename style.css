@@ -17,7 +17,8 @@ article {
 }
 a {
 	color: #0769ad;
-	font-weight: normal;	
+	font-weight: normal;
+	padding: 10px;	
 }  
 span:first-child {
 	font-weight: normal;	
