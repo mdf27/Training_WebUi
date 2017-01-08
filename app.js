@@ -18,7 +18,7 @@ $(window).load(function(){
 			.done(function(data){			
 				$.each( data.albums.items, function( i, item ){	
 					var $albumTitle,
-					$box = $("<div>").attr({"id":"box"+i,"class":"box col-xs-6 col-md-3 col-lg-2"}),
+					$box = $("<div>").attr({"id":"box"+i,"class":"box col-xs-4 col-sm-3 col-md-3 col-lg-2"}),
 					$article = $("<article>"),
 					$leftColumn = $("<div>").attr({"class": "column left-column"}),
 					$rightColumn = $("<div>").attr({"class": "column right-column"}),
@@ -26,14 +26,16 @@ $(window).load(function(){
 					$nameSpan = $("<span>").text("Name: ").attr("class","tag"),
 					$typeSpan  = $("<span>").text("Type: ").attr("class","tag"),
 					$typeValue = $("<span>").text(item.type),
-					$link = $("<a>").attr("href",item.uri).text("Listen on spotify");
+					$link = $("<a>").attr("href",item.uri).text("Listen on spotify"),
+					$linkIcon = $("<a>").attr({"href":item.uri, "class":"glyphicon glyphicon-music"});
 					$nameSpan.appendTo ($leftColumn);
 					$albumTitle = wordSplitAddTooltip(item.name);
 					$albumTitle.appendTo ($nameSpan);
 					$typeSpan.appendTo ($leftColumn);
 					$typeValue.appendTo ($typeSpan);
 					$imageContainer.appendTo($rightColumn);
-					$link.appendTo ($rightColumn);
+					$link.appendTo ($rightColumn);								
+					$linkIcon.appendTo ($rightColumn);					
 					$leftColumn.appendTo($article);
 					$rightColumn.appendTo($article);    		 
 					$article.appendTo($box);
