@@ -22,7 +22,7 @@ $(window).load(function(){
 					$article = $("<article>"),
 					$leftColumn = $("<div>").attr({"class": "column left-column"}),
 					$rightColumn = $("<div>").attr({"class": "column right-column"}),
-					$imageContainer = $("<img>").attr( "src", item.images[0].url ),
+					$imageContainer = $("<img>").attr( "src", item.images[2].url ),
 					$nameSpan = $("<span>").text("Name: ").attr("class","tag"),
 					$typeSpan  = $("<span>").text("Type: ").attr("class","tag"),
 					$typeValue = $("<span>").text(item.type),
