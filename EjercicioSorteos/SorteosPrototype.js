@@ -36,16 +36,15 @@ myApp = (function (){
 	};
 
 	BallsBag.prototype.raffle = function(){
-		var self = this;
-		self.intervalDrawId = setInterval(
+		this.intervalDrawId = setInterval(
 		function(){
-			self.pickBallFromBag();
-			if (self.raffleBalls.length == self.drawLength){
-				clearInterval(self.intervalDrawId);
+			this.pickBallFromBag();
+			if (this.raffleBalls.length == this.drawLength){
+				clearInterval(this.intervalDrawId);
 
-				self.intervalDrawId = null;
+				this.intervalDrawId = null;
 			}
-		}, self.drawInterval);
+		}.bind(this), this.drawInterval);
 	};
 
 	BallsBag.prototype.start = function(){
@@ -58,9 +57,8 @@ myApp = (function (){
 	};
 
 	Monitor.prototype.monitoring = function( raffles ){
-	var self = this;
 	var endedRaffles = new Array;
-	self.intervalMonitorId = setInterval(
+	this.intervalMonitorId = setInterval(
 		function () {
 			for (var i = 0; i < raffles.length; i++ ){
 				raffles[i].showDrawStatus(raffles[i].raffleName)
@@ -71,10 +69,10 @@ myApp = (function (){
 			}
 			console.log('---------------------------');
 			if ( endedRaffles.length == raffles.length ){
-					clearInterval(self.intervalMonitorId);
+					clearInterval(this.intervalMonitorId);
 			}
 			
-		},self.monitorInterval);
+		}.bind(this),this.monitorInterval);
 	}
 
 	return {
