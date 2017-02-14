@@ -20,7 +20,7 @@ myApp = (function (){
 
 	BallsBag.prototype.pickBallFromBag = function(){
 		var currentBall, 
-			currentBallIndex = Math.round(Math.random() * this.balls.length);
+			currentBallIndex = Math.floor(Math.random() * this.balls.length);
 		currentBall = this.balls[currentBallIndex];
 		this.balls.splice(this.balls.indexOf(currentBall), 1);
 		this.raffleBalls.push(currentBall);
@@ -72,7 +72,7 @@ myApp = (function (){
 					clearInterval(this.intervalMonitorId);
 			}
 			
-		}.bind(this),this.monitorInterval);
+		}.apply(this),this.monitorInterval);
 	}
 
 	return {
@@ -89,4 +89,4 @@ testMyApp = (function(){
 	var monitor = new myApp.Monitor(20000);
 	var raffles = [gold, revenge]
 	monitor.monitoring(raffles);
-})();
+});
