@@ -56,7 +56,7 @@ var myApp = (function (){
 		this.interval = intervalMonitor;
 	}
 
-	Monitor.prototype.monitoring = function( raffles ){
+	Monitor.prototype.monitoring = function(raffles){
 	var endedRaffles = [];
 	this.intervalMonitorId = setInterval(
 		function () {
@@ -64,7 +64,7 @@ var myApp = (function (){
 				raffles[i].showDrawStatus(raffles[i].raffleName);
 				if (raffles[i].intervalDrawId === null){
 					if (endedRaffles.indexOf(raffles[i].raffleName ) < 0)
-					endedRaffles.push(raffles[i].raffleName);
+					   endedRaffles.push(raffles[i].raffleName);
 				}
 			}
 			console.log('---------------------------');
@@ -72,7 +72,7 @@ var myApp = (function (){
 					clearInterval(this.intervalMonitorId);
 			}
 			
-		}.bind(this),this.monitorInterval);
+		}.bind(this), this.monitorInterval);
 	};
 
 	function Gold(name, ballsCount, drawLength, drawInterval){
