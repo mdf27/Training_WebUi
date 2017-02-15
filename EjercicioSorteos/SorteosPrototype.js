@@ -2,12 +2,12 @@
 myApp = (function (){
 	function BallsBag(name, ballsCount, drawLength, drawInterval) {
 		this.raffleName = name;
-		this.balls = new Array();
+		this.balls = [];
 		this.drawBallsAvailable = ballsCount;
 		this.drawLength = drawLength;
 		this.drawInterval = drawInterval;
-		this.intervalDrawId;
-		this.raffleBalls = new Array();	
+		this.intervalDrawId = null;
+		this.raffleBalls = [];	
 	};
 
 	BallsBag.prototype.loadBallsBag = function() {
@@ -27,7 +27,7 @@ myApp = (function (){
 	};
 
 	BallsBag.prototype.showDrawStatus = function(raffleName) {
-		var status = new Array(), value;
+		var status = [], value;
 		for (var i = 0; i < this.drawLength; i++) {
 					value = (typeof this.raffleBalls[i] != 'undefined') ? this.raffleBalls[i] : '-';
 					status.push(value);
@@ -72,20 +72,36 @@ myApp = (function (){
 					clearInterval(this.intervalMonitorId);
 			}
 			
-		}.apply(this),this.monitorInterval);
+		}.bind(this),this.monitorInterval);
 	}
 
+	function Gold(name, ballsCount, drawLength, drawInterval){
+		BallsBag.call(this, name, ballsCount, drawLength, drawInterval);
+	}
+
+	Gold.prototype = Object.create(BallsBag.prototype);
+	Gold.prototype.constructor = Gold;
+
+	function Revenge(name, ballsCount, drawLength, drawInterval){
+		BallsBag.call(this, name, ballsCount, drawLength, drawInterval);
+		this.
+	}
+
+	Revenge.prototype = Object.create(BallsBag.prototype);
+	Revenge.prototype.constructor = Revenge;
+
 	return {
-		BallsBag : BallsBag,
+		Gold : Gold,
+		Revenge : Revenge,
 		Monitor : Monitor
 	};
 })();
 
 testMyApp = (function(){
-	var gold = new myApp.BallsBag('oro',44,6,5000);
-	var revenge = new myApp.BallsBag('revenge',44,5,5000);
-	gold.start()
-	revenge.start()
+	var gold = new myApp.Gold('oro',44,6,5000);
+	var revenge = new myApp.Revenge('revenge',44,5,5000);
+	gold.start();
+	revenge.start();
 	var monitor = new myApp.Monitor(20000);
 	var raffles = [gold, revenge]
 	monitor.monitoring(raffles);
