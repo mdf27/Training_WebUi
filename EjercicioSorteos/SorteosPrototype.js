@@ -1,5 +1,5 @@
 
-myApp = (function (){
+var myApp = (function (){
 	function BallsBag(name, ballsCount, drawLength, drawInterval) {
 		this.raffleName = name;
 		this.balls = [];
@@ -8,12 +8,12 @@ myApp = (function (){
 		this.drawInterval = drawInterval;
 		this.intervalDrawId = null;
 		this.raffleBalls = [];	
-	};
+	}
 
 	BallsBag.prototype.loadBallsBag = function() {
 		for (var i = 1; i <= this.drawBallsAvailable; i++) {
 					this.balls.push(i);
-				};
+				}
 
 		return this.balls;
 	};
@@ -31,7 +31,7 @@ myApp = (function (){
 		for (var i = 0; i < this.drawLength; i++) {
 					value = (typeof this.raffleBalls[i] != 'undefined') ? this.raffleBalls[i] : '-';
 					status.push(value);
-		};
+		}
 		console.log(raffleName + ': ' + status);
 	};
 
@@ -54,17 +54,17 @@ myApp = (function (){
 
 	function Monitor(intervalMonitor){
 		this.interval = intervalMonitor;
-	};
+	}
 
 	Monitor.prototype.monitoring = function( raffles ){
-	var endedRaffles = new Array;
+	var endedRaffles = [];
 	this.intervalMonitorId = setInterval(
 		function () {
 			for (var i = 0; i < raffles.length; i++ ){
-				raffles[i].showDrawStatus(raffles[i].raffleName)
-				if (raffles[i].intervalDrawId == null){
+				raffles[i].showDrawStatus(raffles[i].raffleName);
+				if (raffles[i].intervalDrawId === null){
 					if (endedRaffles.indexOf(raffles[i].raffleName ) < 0)
-					endedRaffles.push(raffles[i].raffleName)
+					endedRaffles.push(raffles[i].raffleName);
 				}
 			}
 			console.log('---------------------------');
@@ -73,7 +73,7 @@ myApp = (function (){
 			}
 			
 		}.bind(this),this.monitorInterval);
-	}
+	};
 
 	function Gold(name, ballsCount, drawLength, drawInterval){
 		BallsBag.call(this, name, ballsCount, drawLength, drawInterval);
@@ -84,7 +84,6 @@ myApp = (function (){
 
 	function Revenge(name, ballsCount, drawLength, drawInterval){
 		BallsBag.call(this, name, ballsCount, drawLength, drawInterval);
-		this.
 	}
 
 	Revenge.prototype = Object.create(BallsBag.prototype);
@@ -97,12 +96,13 @@ myApp = (function (){
 	};
 })();
 
-testMyApp = (function(){
+var testMyApp = (function(){
 	var gold = new myApp.Gold('oro',44,6,5000);
 	var revenge = new myApp.Revenge('revenge',44,5,5000);
 	gold.start();
 	revenge.start();
 	var monitor = new myApp.Monitor(20000);
-	var raffles = [gold, revenge]
+	var raffles = [gold, revenge];
 	monitor.monitoring(raffles);
 });
+testMyApp();
