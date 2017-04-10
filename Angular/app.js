@@ -4,11 +4,19 @@ var myModule = angular.module('AgularModule',['ngRoute']);
 //configuro las rutas
 myModule.config(function($routeProvider){
 	//Ruta principal
-	$routeProvider.when('/',{
-		controller: 'maincontroller',
-		templateUrl:'main.html'
+	$routeProvider
+    .when('/',{
+		templateUrl:'main.html',
+        controller: 'maincontroller'
 	})
-})
+    .when('/add',{
+        templateUrl:'Partials/add.html',
+        controller: 'maincontroller',
+    })
+    .otherwise({
+        redirectTo: '/'
+    });
+});
 
 myModule.factory('cityFactory', function(){
 	var cities = [

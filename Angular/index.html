@@ -10,16 +10,12 @@
 	<script type='text/ng-template' id='main.html'>
 	    <ul>                       
 			<label>Filtro:</label>
-			<input ng-model="query">
-			<label>City:</label>
-			<input ng-model="newCity">
-			<label>City:</label>	
-			<input ng-model="newCountry">			
-			<button ng-click="addCity()">Add</button>
+			<input ng-model="query">			
 	      <hr>
 	      <li ng-repeat="city in cities | filter:query">
 	        {{city.name}} - {{city.country}}
 	      </li>
+	      <a href="/add">Add new city</a>
 	    </ul> 
 	</script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
